@@ -2,6 +2,8 @@
 
 Juego de deducción social en español para cuatro o más personas que comparten un teléfono. Una persona lee su tarjeta, la oculta y pasa el dispositivo. Los civiles comparten una palabra secreta y cada impostor recibe la misma pista indirecta.
 
+[Jugar en GitHub Pages](https://arklord12.github.io/Juego_del_Impostor/)
+
 ## Jugar
 
 1. Abre `index.html` en un navegador moderno. También puedes servir la carpeta con `python -m http.server 8000` y abrir `http://localhost:8000`.
@@ -14,6 +16,10 @@ Juego de deducción social en español para cuatro o más personas que comparten
 **Volver a jugar** conserva la lista y los ajustes para una nueva partida. Recargar la página devuelve el juego a la configuración inicial. Las tarjetas, el temporizador y las votaciones se gestionan en el navegador.
 
 ## Publicar en GitHub Pages
+
+En este repositorio, `main` contiene el código y `gh-pages` publica el juego. Para actualizar la versión en línea después de guardar tus cambios en `main`, ejecuta `git push origin main` y luego `git push origin main:gh-pages`.
+
+Para activar Pages en una copia del repositorio y publicar directamente desde `main`:
 
 1. Sube a la rama `main` los archivos `index.html`, `styles.css`, `app.js`, `data.js`, `.nojekyll` y la carpeta `assets/`. Conserva esta estructura, con `index.html` en la raíz.
 2. En GitHub, abre el repositorio y entra en **Settings → Pages**.
