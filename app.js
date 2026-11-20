@@ -112,6 +112,35 @@ function renderLobby(focus = true) {
       </section>
     </div>`,focus);
 }
+// La misma tarjeta se pasa entre civiles. Su ilustración se prepara una sola vez
+// y se retira del documento cada vez que el jugador suelta la cubierta.
+function preparePortrait(entry) {
+  if (!entry.imagen) return null;
+
+  const frame = document.createElement('div');
+  frame.className = 'portrait-frame';
+  const local = new Image();
+  local.className = 'portrait';
+  local.alt = '';
+  local.src = entry.imagen;
+  frame.append(local);
+
+  if (entry.imagenRemota) {
+    const remote = new Image();
+    remote.className = 'portrait';
+    remote.alt = '';
+    remote.referrerPolicy = 'no-referrer';
+    remote.onload = () => {
+      // Las fotos llenan el marco. Las ilustraciones de cuerpo entero
+      // conservan la silueta completa, incluso en teléfonos estrechos.
+      remote.style.objectFit = entry.ajusteImagen || 'contain';
+      remote.style.objectPosition = entry.posicionImagen || 'center';
+      frame.replaceChildren(remote);
+    };
+    remote.src = entry.imagenRemota;
+  }
+  return frame;
+}
 function startMatch() {
   if (roster.length<4) return;
   roster.forEach(p=>p.name=p.name.trim() || 'Jugador '+p.id);
@@ -122,7 +151,8 @@ function startMatch() {
     [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]];
   }
   const spies=new Set(shuffled.slice(0,impostors));
-  match={key,entry:pick(GAME_DATA[key].items),players:roster.map(p=>({...p,spy:spies.has(p.id),alive:true})),turn:0,round:1};
+  const entry = pick(GAME_DATA[key].items);
+  match={key,entry,portrait:preparePortrait(entry),players:roster.map(p=>({...p,spy:spies.has(p.id),alive:true})),turn:0,round:1};
   renderReveal();
 }
 function phaseLabel(symbol, title) {
@@ -160,7 +190,8 @@ function bindReveal(player) {
     showing=true;
     secret.innerHTML=player.spy?
       '<span class="secret-symbol coral">'+icon('mask',36)+'</span><strong class="warning">Eres el impostor</strong><span>Tu pista</span><b>'+escapeHTML(match.entry.pista)+'</b>':
-      (match.entry.imagen?'<img class="portrait" src="'+escapeHTML(match.entry.imagen)+'" alt="">':'<span class="secret-symbol mint">'+icon('users',36)+'</span>')+'<span>Eres civil · Palabra secreta</span><b>'+escapeHTML(match.entry.palabra)+'</b>';
+      (match.portrait ? '' : '<span class="secret-symbol mint">'+icon('users',36)+'</span>')+'<span>Eres civil · Palabra secreta</span><b>'+escapeHTML(match.entry.palabra)+'</b>';
+    if (!player.spy && match.portrait) secret.prepend(match.portrait);
     secret.hidden=false;
     next.disabled=false;
     cover.setAttribute('aria-label',secret.textContent);

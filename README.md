@@ -31,7 +31,9 @@ Para activar Pages en una copia del repositorio y publicar directamente desde `m
 
 ## Editar el catálogo
 
-El archivo `data.js` contiene `GAME_DATA`. Cada temática tiene una clave única, un nombre visible, el indicador `requiereImagen` y un arreglo `items`. El catálogo inicial contiene 30 entradas por temática, 150 en total.
+El archivo `data.js` contiene `GAME_DATA`. Cada temática tiene una clave única, un nombre visible, el indicador `requiereImagen` y un arreglo `items`. El catálogo tiene 184 entradas, con 60 comidas y 34 personajes de Cultura Popular.
+
+Las comidas típicas y sus pistas se documentaron con referencias de los Andes, el Caribe, los Llanos, el Pacífico, la Amazonía y el Archipiélago. [Colombia Travel](https://colombia.travel/es/blog/revista-colombia/pais-de-regiones) · [Marca País Colombia](https://colombia.co/cultura-colombiana/gastronomia/la-cocina-colombiana-mestiza-diversa-e-irresistible)
 
 ### Añadir, editar o quitar una palabra
 
@@ -56,6 +58,15 @@ El archivo `data.js` contiene `GAME_DATA`. Cada temática tiene una clave única
    ```
 
 3. Para sustituir un retrato, reemplaza el archivo o cambia la ruta. Si quitas un personaje, elimina su entrada y, cuando ninguna otra entrada lo use, su imagen. Mantén un retrato en cada entrada de Cultura Popular.
+4. Si tienes una imagen alojada externamente, agrega su URL HTTPS en `imagenRemota`. La tarjeta presenta la imagen local de inmediato y la sustituye cuando la remota termina de cargar. Para llenar el marco, usa `ajusteImagen: "cover"`. Con `posicionImagen` puedes ajustar el encuadre, por ejemplo `"center 25%"`.
+
+### Fuentes de los retratos
+
+- Juegos y animación. [Nintendo](https://www.smashbros.com/es_ES/fighter/) · [Pokédex](https://www.pokemon.com/el/pokedex/pikachu) · [Disney](https://www.disney.co.jp/fc/mickey-friends) · [Nickelodeon](https://www.nick.com/fan-hub/spongebob-squarepants)
+- Cómics y cine. [DC](https://www.dc.com/characters/batman) · [Marvel](https://www.marvel.com/teams-and-groups/avengers/in-comics) · [Star Wars](https://www.starwars.com/databank) · [DreamWorks](https://www.dreamworks.com/movies/shrek)
+- Televisión colombiana. [Yo soy Betty, la fea](https://www.13.cl/programas/betty-la-fea/perfiles/beatriz-pinzon-solano) · [Profesor Súper O y La Cevichica](https://www.misenal.tv/noticias/profesor-super-o-personajes-frases) · [Pedro el Escamoso](https://www.caracoltv.com/pedro-el-escamoso/conoce-los-mejores-datos-curiosos-de-pedro-el-escamoso)
+
+Cada entrada enlaza a su imagen remota directamente en `data.js`. La portada y las ilustraciones locales de los cuatro personajes colombianos se crearon con ImageGen.
 
 ### Crear una temática
 

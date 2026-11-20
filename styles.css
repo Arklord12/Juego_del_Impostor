@@ -107,7 +107,19 @@ h3{font-size:1.04rem;font-weight:730;letter-spacing:-.024em}
 .warning{color:#af3c53;font-size:1.3rem}
 .secret-symbol{width:68px;height:68px;display:grid;place-items:center;border-radius:22px}
 .coral,.bad{background:#fae3e6;color:#9b384f}.mint,.good{background:#dcf0e9;color:#356650}
-.portrait{width:124px;height:124px;border-radius:17px;object-fit:contain}
+.secret:has(.portrait-frame){gap:7px}
+.portrait-frame{
+  width:min(100%,220px);
+  flex:0 1 172px;
+  min-height:0;
+  overflow:hidden;
+  border:1px solid #d4c3e1;
+  border-radius:14px;
+  background:radial-gradient(ellipse at 50% 35%,#fffcf6 10%,#f5ecf9 75%,#e6d8f0);
+}
+.portrait{display:block;width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.secret b{max-width:100%;overflow-wrap:anywhere;text-wrap:balance}
+.secret:has(.portrait-frame) b{font-size:clamp(1.3rem,5.3vw,1.65rem)}
 .phase-action{max-width:370px}
 .timer-box,.word-recap{background:linear-gradient(125deg,#eee6fa,#f4eef8);border:1px solid #e0d4ed;border-radius:18px;display:flex;align-items:center;flex-direction:column}
 .timer-box{gap:7px;margin:27px 0 12px;padding:27px 10px;color:#6d5393}
